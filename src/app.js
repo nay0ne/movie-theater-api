@@ -6,3 +6,5 @@ app.use("/users", users);
 app.use("/shows", shows);
 const { db } = require('../db/connection');
 app.use(express.json());
+
+module.exports = app
