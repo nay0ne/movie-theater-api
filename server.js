@@ -1,7 +1,7 @@
 //  create server
 const express = require("express");
 const app = express();
-const db = require("./db.connection");
+const { db } = require('./db/connection');
 const port = 3000;
 
 app.listen(port, async () => {
