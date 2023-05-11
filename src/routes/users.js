@@ -1,23 +1,24 @@
 const { Router } = require('express');
-const app = require('../app');
-const router = express.Router();
+const router = Router();
 const User = require("../../models");
 
-router.get("/users", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
    try {
-        const users = await User.findall();
+        const users = await User.findAll();
         res.json(users);
-    } catch(error) {
+    } catch (error) {
         next(error);
     }
 });
 
-router.get("/users/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
     try {
         const id = req.params.id;
-        user = await Show.findByPk(id);
+        const user = await User.findByPk(id);
         res.json(user);
-    } catch(error) {
+    } catch (error) {
         next(error);
     }
 });
+
+module.exports = router
