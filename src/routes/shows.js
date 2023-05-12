@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const Show = require("../../models/Show");
+const Show = require("../../models/index");
 
 router.get("/", async (req, res, next) => {
    try {
@@ -20,5 +20,14 @@ router.get("/:id", async (req, res, next) => {
         next(error);
     }
 });
+//  genre needs a {where:}
+router.get("/:genre", async (req, res, next) => {
+    try {
+        const genre = req.params.genre;
+        const shows = await ShowfindAll()
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router
