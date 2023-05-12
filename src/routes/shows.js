@@ -4,8 +4,8 @@ const { Show } = require("../../models/index");
 
 router.get("/", async (req, res, next) => {
    try {
-        const shows = await Show.findAll();
-        res.json(shows);
+        const show = await Show.findAll();
+        res.json(show);
     } catch (error) {
         next(error);
     }
@@ -20,22 +20,27 @@ router.get("/:id", async (req, res, next) => {
         next(error);
     }
 });
-//  get shows of particular genre
-router.get("/:genre", async (req, res, next) => {
+//  get shows of particular genre- working
+router.get("/:genres/:genre", async (req, res, next) => {
     try {
         const genre = req.params.genre;
-        const shows = await Show.findAll({
-            where: {
-                genre: genre
-            } 
-        })
-        res.json(shows);
+        const show = await Show.findAll({where: {genre: genre} })
+        res.json(show);
     } catch (error) {
         next(error)
     }
 })
-
-// add router.put to updating show rating
+//  update 
+router.put("/id", async (req, res, next) => {
+    try {
+        const id = req.params;
+        const show = Show.findByPk(id);
+        await Show.update(show, req.body);
+        //  not working
+    } catch (error) {
+        
+    }
+})
 
 //  add router.put to update show status
 

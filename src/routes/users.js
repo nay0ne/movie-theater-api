@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const { User } = require("../../models/index");
+const { Show } = require("../../models/index");
 
 router.get("/", async (req, res, next) => {
    try {
@@ -21,10 +22,14 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 //  get all shows watched by a user
-router.get("/:id", async (req, res, next) => {
+router.get("/:id/shows", async (req, res, next) => {
     try {
         const id = req.params.id;
-        const user = await User.findByPk(id);
+        const shows = await Show.findAll({
+            where: {userId: id}
+        })
+        res.json(shows)
+        
 //  add logic to pull shows from user
     } catch (error) {
         next(error)
