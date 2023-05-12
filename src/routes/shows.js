@@ -24,7 +24,7 @@ router.get("/:id", async (req, res, next) => {
 router.get("/:genre", async (req, res, next) => {
     try {
         const genre = req.params.genre;
-        const shows = await ShowfindAll({
+        const shows = await Show.findAll({
             where: {
                 genre: genre
             } 
