@@ -6,7 +6,8 @@ const port = 3000;
 const seed = require("./seed");
 
 app.listen(port, async () => {
-    await db.sync();
+    await db.sync({force: true});
+    await seed();
     // add router endpoint once set
     console.log(`listening at http://localhost:${port}/addrouterendpoint`)
 });
