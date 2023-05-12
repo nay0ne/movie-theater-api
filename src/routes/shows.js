@@ -20,7 +20,7 @@ router.get("/:id", async (req, res, next) => {
         next(error);
     }
 });
-//  genre needs a {where:}
+//  get shows of particular genre
 router.get("/:genre", async (req, res, next) => {
     try {
         const genre = req.params.genre;
@@ -34,5 +34,19 @@ router.get("/:genre", async (req, res, next) => {
         next(error)
     }
 })
+
+// add router.put to updating show rating
+
+//  add router.put to update show status
+
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const show = await Show.findByPk(id);
+        show.slice(id, 1);
+    } catch (error) {
+        next(error);
+    }
+});
 
 module.exports = router
